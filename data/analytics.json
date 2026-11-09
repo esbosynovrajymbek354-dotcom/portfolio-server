@@ -1,0 +1,72 @@
+{
+  "user_1763203809165": {
+    "profileViews": 463,
+    "projectViews": 282,
+    "engagementRate": 13,
+    "viewsHistory": [
+      {
+        "date": "2025-11-10",
+        "views": 35
+      },
+      {
+        "date": "2025-11-11",
+        "views": 47
+      },
+      {
+        "date": "2025-11-12",
+        "views": 80
+      },
+      {
+        "date": "2025-11-13",
+        "views": 66
+      },
+      {
+        "date": "2025-11-14",
+        "views": 89
+      },
+      {
+        "date": "2025-11-15",
+        "views": 67
+      },
+      {
+        "date": "2025-11-16",
+        "views": 13
+      }
+    ]
+  },
+  "user_1764657407950": {
+    "profileViews": 437,
+    "projectViews": 161,
+    "engagementRate": 43,
+    "viewsHistory": [
+      {
+        "date": "2025-11-26",
+        "views": 12
+      },
+      {
+        "date": "2025-11-27",
+        "views": 56
+      },
+      {
+        "date": "2025-11-28",
+        "views": 15
+      },
+      {
+        "date": "2025-11-29",
+        "views": 69
+      },
+      {
+        "date": "2025-11-30",
+        "views": 25
+      },
+      {
+        "date": "2025-12-01",
+        "views": 22
+      },
+      {
+        "date": "2025-12-02",
+        "views": 52
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "employer_1765023136854",
+    "email": "mikhail@gmail.com",
+    "password": "kaspikz",
+    "firstname": "Михаил",
+    "lastname": "Ломтадзе",
+    "company": "Kaspi Kz",
+    "created_at": "2025-12-06T12:12:16.855Z"
+  },
+  {
+    "id": "employer_1792137355158",
+    "email": "raiymbek@gmail.com",
+    "password": "123",
+    "firstname": "Райымбек",
+    "lastname": "Есбсоынов",
+    "company": "google",
+    "created_at": "2026-10-16T07:55:55.159Z"
+  }
+]

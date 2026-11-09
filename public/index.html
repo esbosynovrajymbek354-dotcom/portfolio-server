@@ -1,0 +1,2375 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Студенттік Цифрлық Портфолио</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .modal-backdrop {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #f3f4f6;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .file-item button {
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        .file-item button:hover {
+            color: #dc2626;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full bg-gray-50">
+  <div id="app" class="min-h-full"><!-- Navigation -->
+   <!-- Navigation -->
+<div class="bg-white shadow fixed top-0 left-0 w-full z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <!-- Логотип және атау -->
+      <div class="flex items-center space-x-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="logo" class="w-8 h-8">
+        <h1 class="text-xl font-semibold text-gray-800">Студенттік Цифрлық Портфолио</h1>
+      </div>
+
+      <!-- Navigation -->
+<nav class="bg-white shadow-lg border-b border-gray-200 fixed top-0 left-0 w-full z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Атау -->
+      <div class="flex items-center space-x-3">
+        <h1 id="nav-title" class="text-xl font-bold text-indigo-600">Студенттік Цифрлық Портфолио</h1>
+      </div>
+
+      <!-- Навигация сілтемелері -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="#" onclick="showPage('home')" id="home-link"
+           class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Басты бет</a>
+        <a href="#" onclick="showPage('dashboard')" id="dashboard-link"
+           class="hidden text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Басқару тақтасы</a>
+        <a href="#" onclick="showPage('portfolio')" id="portfolio-link"
+           class="hidden text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Портфолио</a>
+        <a href="#" onclick="showPage('projects')" id="projects-link"
+           class="hidden text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Жобалар</a>
+        <a href="#" onclick="showPage('analytics')" id="analytics-link"
+           class="hidden text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Аналитика</a>
+      </div>
+
+      <!-- Оң жақ батырмалар -->
+      <div class="flex items-center space-x-4">
+        <div id="auth-buttons" class="flex space-x-2">
+          <button onclick="showPage('login')" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors">Кіру</button>
+          <button onclick="showPage('register')" class="border border-indigo-600 text-indigo-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-50 transition-colors">Тіркелу</button>
+        </div>
+
+        <div id="user-menu" class="hidden relative">
+          <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <div class="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white font-medium" id="user-avatar">U</div>
+          </button>
+          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+            <a href="#" onclick="showPage('profile')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Профиль</a>
+            <a href="#" onclick="showPage('settings')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Баптаулар</a>
+            <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Шығу</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Header биіктігінен кейінгі бос орын -->
+<div class="pt-20"></div>
+
+
+
+      <!-- Пайдаланушы мәзірі -->
+      <div class="relative">
+        <button id="user-menu" class="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A9 9 0 1118.364 5.122a9 9 0 01-13.243 12.682z" />
+          </svg>
+          <span id="current-username" class="font-medium">Пайдаланушы</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Ашылмалы мәзір -->
+        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+          <a href="#" onclick="showPage('profile')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Профиль</a>
+          <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Шығу</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Бос орын қалдыру -->
+<div class="pt-20"></div>
+<!-- Main Content -->
+   <main id="main-content" class="flex-1"><!-- Home Page -->
+    <div id="home-page" class="page">
+     <div class="gradient-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+       <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6"><span id="welcome-title">Оқу жолыңызды көрсетіңіз</span></h1>
+        <p id="welcome-subtitle" class="text-xl text-indigo-100 mb-8 max-w-3xl mx-auto">Жобаларыңызды, дағдыларыңызды және жетістіктеріңізді көрсету үшін кәсіби цифрлық портфолио жасаңыз. Жұмыс берушілерге ерекшеленіп көрініп, студент ретіндегі өсуіңізді көрсетіңіз.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+  <button onclick="showPage('register')" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+    Бастау
+  </button>
+  <button onclick="showPage('login')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+    Кіру
+  </button>
+  <button onclick="window.location.href='/employer'" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+    👔 Жұмыс беруші ретінде кіру
+  </button>
+</div>
+       </div>
+      </div>
+     </div><!-- Features Section -->
+     <div class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Барлық қажетті мүмкіндіктер</h2>
+        <p class="text-lg text-gray-600">Сіздің тарихыңызды айтатын толық портфолио құрыңыз</p>
+       </div>
+       <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center p-6 rounded-lg border border-gray-200 card-hover">
+         <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+         </div>
+         <h3 class="text-xl font-semibold text-gray-900 mb-2">Жобаларды көрсету</h3>
+         <p class="text-gray-600">Ең жақсы жұмыстарыңызды толық сипаттамалармен, файлдармен және тікелей демоларға сілтемелермен көрсетіңіз.</p>
+        </div>
+        <div class="text-center p-6 rounded-lg border border-gray-200 card-hover">
+         <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+         </div>
+         <h3 class="text-xl font-semibold text-gray-900 mb-2">Дағдылар мен жетістіктер</h3>
+         <p class="text-gray-600">Прогрессіңізді қадағалаңыз және сертификаттарды, марапаттарды және техникалық дағдыларды көрсетіңіз.</p>
+        </div>
+        <div class="text-center p-6 rounded-lg border border-gray-200 card-hover">
+         <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+         </div>
+         <h3 class="text-xl font-semibold text-gray-900 mb-2">Аналитика және түсініктер</h3>
+         <p class="text-gray-600">Портфолио көрулерін және қатысуды бақылап, презентацияңызды оңтайландырыңыз.</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Login Page -->
+    <div id="login-page" class="page hidden">
+     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full space-y-8">
+       <div class="text-center">
+        <h2 class="text-3xl font-bold text-gray-900">Аккаунтқа кіру</h2>
+        <p class="mt-2 text-sm text-gray-600">Қайта келдіңіз! Деректеріңізді енгізіңіз.</p>
+       </div>
+       <form id="login-form" class="mt-8 space-y-6" onsubmit="handleLogin(event)">
+        <div class="space-y-4">
+         <div><label for="login-email" class="block text-sm font-medium text-gray-700">Электрондық пошта</label> <input id="login-email" name="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+         </div>
+         <div><label for="login-password" class="block text-sm font-medium text-gray-700">Құпия сөз</label> <input id="login-password" name="password" type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+         </div>
+        </div>
+        <div id="login-error" class="hidden text-sm text-red-600 text-center"></div>
+        <div><button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"> Кіру </button>
+        </div>
+        <div class="text-center">
+         <p class="text-sm text-gray-600">Аккаунтыңыз жоқ па? <a href="#" onclick="showPage('register')" class="font-medium text-indigo-600 hover:text-indigo-500">Тіркелу</a></p>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div><!-- Register Page -->
+    <div id="register-page" class="page hidden">
+     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full space-y-8">
+       <div class="text-center">
+        <h2 class="text-3xl font-bold text-gray-900">Аккаунт жасау</h2>
+        <p class="mt-2 text-sm text-gray-600">Бүгін цифрлық портфолио құруды бастаңыз</p>
+       </div>
+       <form id="register-form" class="mt-8 space-y-6" onsubmit="handleRegister(event)">
+        <div class="space-y-4">
+         <div class="grid grid-cols-2 gap-4">
+          <div><label for="register-firstname" class="block text-sm font-medium text-gray-700">Аты</label> <input id="register-firstname" name="firstname" type="text" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+          </div>
+          <div><label for="register-lastname" class="block text-sm font-medium text-gray-700">Тегі</label> <input id="register-lastname" name="lastname" type="text" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+          </div>
+         </div>
+         <div><label for="register-email" class="block text-sm font-medium text-gray-700">Электрондық пошта мекенжайы</label> <input id="register-email" name="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+         </div>
+         <div><label for="register-username" class="block text-sm font-medium text-gray-700">Пайдаланушы аты</label> <input id="register-username" name="username" type="text" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+         </div>
+         <div><label for="register-password" class="block text-sm font-medium text-gray-700">Құпия сөз</label> <input id="register-password" name="password" type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+         </div>
+        </div>
+        <div id="register-error" class="hidden text-sm text-red-600 text-center"></div>
+        <div><button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"> Аккаунт жасау </button>
+        </div>
+        <div class="text-center">
+         <p class="text-sm text-gray-600">Аккаунтыңыз бар ма? <a href="#" onclick="showPage('login')" class="font-medium text-indigo-600 hover:text-indigo-500">Кіру</a></p>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div><!-- Dashboard Page -->
+    <div id="dashboard-page" class="page hidden">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="mb-8">
+       <h1 class="text-3xl font-bold text-gray-900">Басқару тақтасы</h1>
+       <p class="text-gray-600 mt-2">Қайта келдіңіз! Мұнда сіздің портфолионың шолуы.</p>
+      </div><!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div class="flex items-center">
+         <div class="p-2 bg-blue-100 rounded-lg">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+         </div>
+         <div class="ml-4">
+          <p class="text-sm font-medium text-gray-600">Жобалар</p>
+          <p id="projects-count" class="text-2xl font-semibold text-gray-900">0</p>
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div class="flex items-center">
+         <div class="p-2 bg-green-100 rounded-lg">
+          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+         </div>
+         <div class="ml-4">
+          <p class="text-sm font-medium text-gray-600">Жетістіктер</p>
+          <p id="achievements-count" class="text-2xl font-semibold text-gray-900">0</p>
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div class="flex items-center">
+         <div class="p-2 bg-purple-100 rounded-lg">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+         </div>
+         <div class="ml-4">
+          <p class="text-sm font-medium text-gray-600">Дағдылар</p>
+          <p id="skills-count" class="text-2xl font-semibold text-gray-900">0</p>
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div class="flex items-center">
+         <div class="p-2 bg-orange-100 rounded-lg">
+          <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          </svg>
+         </div>
+         <div class="ml-4">
+          <p class="text-sm font-medium text-gray-600">Профиль көрулері</p>
+          <p id="dashboard-profile-views" class="text-2xl font-semibold text-gray-900">0</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Recent Activity -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+       <div class="bg-white rounded-lg shadow border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+         <h3 class="text-lg font-semibold text-gray-900">Соңғы жобалар</h3>
+        </div>
+        <div id="recent-projects" class="p-6">
+         <p class="text-gray-500 text-center py-8">Әлі жобалар жоқ. <a href="#" onclick="showPage('projects')" class="text-indigo-600 hover:text-indigo-500">Алғашқы жобаңызды жасаңыз</a></p>
+        </div>
+       </div>
+       <div class="bg-white rounded-lg shadow border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+         <h3 class="text-lg font-semibold text-gray-900">Соңғы жетістіктер</h3>
+        </div>
+        <div id="recent-achievements" class="p-6">
+         <p class="text-gray-500 text-center py-8">Әлі жетістіктер жоқ. <a href="#" onclick="showPage('portfolio')" class="text-indigo-600 hover:text-indigo-500">Алғашқы жетістігіңізді қосыңыз</a></p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Portfolio Page -->
+    <div id="portfolio-page" class="page hidden">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex justify-between items-center mb-8">
+       <div>
+        <h1 class="text-3xl font-bold text-gray-900">Портфолио</h1>
+        <p class="text-gray-600 mt-2">Жетістіктеріңізді, дағдыларыңызды және сертификаттарыңызды басқарыңыз</p>
+       </div><button onclick="showAddPortfolioModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"> Элемент қосу </button>
+      </div><!-- Filter Tabs -->
+      <div class="border-b border-gray-200 mb-6">
+       <nav class="-mb-px flex space-x-8"><button onclick="filterPortfolio('all')" class="portfolio-tab active border-b-2 border-indigo-500 py-2 px-1 text-sm font-medium text-indigo-600">Барлығы</button> <button onclick="filterPortfolio('certificate')" class="portfolio-tab border-b-2 border-transparent py-2 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Сертификаттар</button> <button onclick="filterPortfolio('skill')" class="portfolio-tab border-b-2 border-transparent py-2 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Дағдылар</button> <button onclick="filterPortfolio('achievement')" class="portfolio-tab border-b-2 border-transparent py-2 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Жетістіктер</button>
+       </nav>
+      </div><!-- Portfolio Items Grid -->
+      <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Portfolio items will be rendered here -->
+      </div>
+     </div>
+    </div><!-- Projects Page -->
+    <div id="projects-page" class="page hidden">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex justify-between items-center mb-8">
+       <div>
+        <h1 class="text-3xl font-bold text-gray-900">Жобалар</h1>
+        <p class="text-gray-600 mt-2">Жеке және топтық жобаларыңызды көрсетіңіз</p>
+       </div><button onclick="showAddProjectModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"> Жаңа жоба </button>
+      </div><!-- Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Projects will be rendered here -->
+      </div>
+     </div>
+    </div><!-- Analytics Page -->
+    <div id="analytics-page" class="page hidden">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="mb-8">
+       <h1 class="text-3xl font-bold text-gray-900">Аналитика</h1>
+       <p class="text-gray-600 mt-2">Портфолио өнімділігі мен қатысуын қадағалаңыз</p>
+      </div><!-- Analytics Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Профиль көрулері</h3>
+        <div id="profile-views" class="text-3xl font-bold text-indigo-600 mb-2">
+         0
+        </div>
+        <p id="profile-views-change" class="text-sm text-gray-500">Деректер жиналуда...</p>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Жоба көрулері</h3>
+        <div id="project-views" class="text-3xl font-bold text-green-600 mb-2">
+         0
+        </div>
+        <p id="project-views-change" class="text-sm text-gray-500">Деректер жиналуда...</p>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Қатысу деңгейі</h3>
+        <div id="engagement-rate" class="text-3xl font-bold text-purple-600 mb-2">
+         0%
+        </div>
+        <p id="engagement-change" class="text-sm text-gray-500">Деректер жиналуда...</p>
+       </div>
+      </div><!-- Charts -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Уақыт бойынша көрулер</h3>
+        <div class="h-64 bg-gray-50 rounded-lg p-4">
+         <canvas id="viewsChart" width="400" height="200"></canvas>
+        </div>
+       </div>
+       <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Танымал жобалар</h3>
+        <div id="popular-projects" class="space-y-4">
+         <div class="text-center py-8 text-gray-500">
+          <p>Жобалар қосылғаннан кейін статистика көрсетіледі</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Profile Page -->
+    <div id="profile-page" class="page hidden">
+     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="mb-8">
+       <h1 class="text-3xl font-bold text-gray-900">Профиль баптаулары</h1>
+       <p class="text-gray-600 mt-2">Жеке ақпаратыңызды және теңшелімдеріңізді жаңартыңыз</p>
+      </div>
+      <div class="bg-white rounded-lg shadow border border-gray-200">
+       <form id="profile-form" onsubmit="handleProfileUpdate(event)" class="p-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <div><label for="profile-firstname" class="block text-sm font-medium text-gray-700">Аты</label> <input type="text" id="profile-firstname" name="firstname" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+         </div>
+         <div><label for="profile-lastname" class="block text-sm font-medium text-gray-700">Тегі</label> <input type="text" id="profile-lastname" name="lastname" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+         </div>
+        </div>
+        <div><label for="profile-email" class="block text-sm font-medium text-gray-700">Электрондық пошта</label> <input type="email" id="profile-email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div><label for="profile-username" class="block text-sm font-medium text-gray-700">Пайдаланушы аты</label> <input type="text" id="profile-username" name="username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div><label for="profile-bio" class="block text-sm font-medium text-gray-700">Өзі туралы</label> <textarea id="profile-bio" name="bio" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Өзіңіз туралы айтып беріңіз..."></textarea>
+        </div>
+        <div class="flex justify-end"><button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition-colors"> Өзгерістерді сақтау </button>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div><!-- Settings Page -->
+    <div id="settings-page" class="page hidden">
+     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="mb-8">
+       <h1 class="text-3xl font-bold text-gray-900">Баптаулар</h1>
+       <p class="text-gray-600 mt-2">Аккаунт теңшелімдері мен қауіпсіздікті басқарыңыз</p>
+      </div>
+      <div class="space-y-6"><!-- Account Settings -->
+       <div class="bg-white rounded-lg shadow border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+         <h3 class="text-lg font-semibold text-gray-900">Аккаунт баптаулары</h3>
+        </div>
+        <div class="p-6 space-y-4">
+         <div class="flex items-center justify-between">
+          <div>
+           <h4 class="text-sm font-medium text-gray-900">Электрондық пошта хабарландырулары</h4>
+           <p class="text-sm text-gray-600">Портфолио туралы электрондық пошта жаңартуларын алыңыз</p>
+          </div><label class="relative inline-flex items-center cursor-pointer"> <input type="checkbox" class="sr-only peer" checked>
+           <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div></label>
+         </div>
+         <div class="flex items-center justify-between">
+          <div>
+           <h4 class="text-sm font-medium text-gray-900">Ашық профиль</h4>
+           <p class="text-sm text-gray-600">Портфолионы басқаларға көрінетін етіңіз</p>
+          </div><label class="relative inline-flex items-center cursor-pointer"> <input type="checkbox" class="sr-only peer" checked>
+           <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div></label>
+         </div>
+        </div>
+       </div>
+       <!-- ===================================== -->
+<!-- ЖҰМЫС БЕРУШІ БЕТТЕРІ (index.html ішіне қосу керек) -->
+<!-- Settings Page-тен кейін қою керек -->
+<!-- ===================================== -->
+
+<!-- Employer Login Page -->
+<div id="employer-login-page" class="page hidden">
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <div class="text-center">
+        <div class="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">Жұмыс беруші ретінде кіру</h2>
+        <p class="mt-2 text-sm text-gray-600">Студенттердің портфолиоларын көру</p>
+      </div>
+      <form id="employer-login-form" class="mt-8 space-y-6" onsubmit="handleEmployerLogin(event)">
+        <div class="space-y-4">
+          <div>
+            <label for="employer-login-email" class="block text-sm font-medium text-gray-700">Электрондық пошта</label>
+            <input id="employer-login-email" name="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          </div>
+          <div>
+            <label for="employer-login-password" class="block text-sm font-medium text-gray-700">Құпия сөз</label>
+            <input id="employer-login-password" name="password" type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          </div>
+        </div>
+        <div id="employer-login-error" class="hidden text-sm text-red-600 text-center"></div>
+        <div>
+          <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors">Кіру</button>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600">Аккаунтыңыз жоқ па? <a href="#" onclick="showPage('employer-register')" class="font-medium text-purple-600 hover:text-purple-500">Тіркелу</a></p>
+          <p class="text-sm text-gray-600 mt-2"><a href="#" onclick="showPage('home')" class="font-medium text-indigo-600 hover:text-indigo-500">← Басты бетке оралу</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Employer Register Page -->
+<div id="employer-register-page" class="page hidden">
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <div class="text-center">
+        <div class="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">Жұмыс беруші тіркелу</h2>
+        <p class="mt-2 text-sm text-gray-600">Талантты студенттерді табыңыз</p>
+      </div>
+      <form id="employer-register-form" class="mt-8 space-y-6" onsubmit="handleEmployerRegister(event)">
+        <div class="space-y-4">
+          <div>
+            <label for="employer-company" class="block text-sm font-medium text-gray-700">Компания атауы</label>
+            <input id="employer-company" name="company" type="text" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="employer-firstname" class="block text-sm font-medium text-gray-700">Аты</label>
+              <input id="employer-firstname" name="firstname" type="text" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+            </div>
+            <div>
+              <label for="employer-lastname" class="block text-sm font-medium text-gray-700">Тегі</label>
+              <input id="employer-lastname" name="lastname" type="text" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+            </div>
+          </div>
+          <div>
+            <label for="employer-register-email" class="block text-sm font-medium text-gray-700">Электрондық пошта</label>
+            <input id="employer-register-email" name="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          </div>
+          <div>
+            <label for="employer-register-password" class="block text-sm font-medium text-gray-700">Құпия сөз</label>
+            <input id="employer-register-password" name="password" type="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+          </div>
+        </div>
+        <div id="employer-register-error" class="hidden text-sm text-red-600 text-center"></div>
+        <div>
+          <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors">Тіркелу</button>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600">Аккаунтыңыз бар ма? <a href="#" onclick="showPage('employer-login')" class="font-medium text-purple-600 hover:text-purple-500">Кіру</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Employer Dashboard - Students List -->
+<div id="employer-dashboard-page" class="page hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Студенттер тізімі</h1>
+      <p class="text-gray-600 mt-2">Барлық студенттердің портфолиоларын көру</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-6">
+      <input type="text" id="student-search" onkeyup="filterStudents()" placeholder="Студент іздеу..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+    </div>
+
+    <!-- Students Grid -->
+    <div id="students-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Students will be rendered here -->
+    </div>
+  </div>
+</div>
+
+<!-- Student Detail Page (for Employer) -->
+<div id="employer-student-detail-page" class="page hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-6">
+      <button onclick="showPage('employer-dashboard')" class="text-purple-600 hover:text-purple-700 flex items-center">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Артқа
+      </button>
+    </div>
+
+    <!-- Student Info Card -->
+    <div class="bg-white rounded-lg shadow border border-gray-200 p-6 mb-8">
+      <div class="flex items-start space-x-4">
+        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <span id="student-detail-avatar" class="text-3xl font-bold text-purple-600">S</span>
+        </div>
+        <div class="flex-1">
+          <h2 id="student-detail-name" class="text-2xl font-bold text-gray-900">-</h2>
+          <p id="student-detail-email" class="text-gray-600">-</p>
+          <p id="student-detail-bio" class="text-gray-700 mt-2">-</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div class="flex items-center">
+          <div class="p-2 bg-blue-100 rounded-lg">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-medium text-gray-600">Жобалар</p>
+            <p id="student-detail-projects-count" class="text-2xl font-semibold text-gray-900">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div class="flex items-center">
+          <div class="p-2 bg-green-100 rounded-lg">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-medium text-gray-600">Портфолио</p>
+            <p id="student-detail-portfolio-count" class="text-2xl font-semibold text-gray-900">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div class="flex items-center">
+          <div class="p-2 bg-orange-100 rounded-lg">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm font-medium text-gray-600">Көрулер</p>
+            <p id="student-detail-views" class="text-2xl font-semibold text-gray-900">0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="bg-white rounded-lg shadow border border-gray-200 mb-8">
+      <div class="p-6 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900">Жобалар</h3>
+      </div>
+      <div id="student-detail-projects" class="p-6">
+        <p class="text-gray-500 text-center py-8">Жобалар жүктелуде...</p>
+      </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div class="bg-white rounded-lg shadow border border-gray-200">
+      <div class="p-6 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900">Портфолио</h3>
+      </div>
+      <div id="student-detail-portfolio" class="p-6">
+        <p class="text-gray-500 text-center py-8">Портфолио жүктелуде...</p>
+      </div>
+    </div>
+  </div>
+</div>
+       <!-- Security Settings -->
+       <div class="bg-white rounded-lg shadow border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+         <h3 class="text-lg font-semibold text-gray-900">Қауіпсіздік</h3>
+        </div>
+        <div class="p-6">
+         <form id="change-password-form" onsubmit="handlePasswordChange(event)" class="space-y-4">
+          <div><label for="current-password" class="block text-sm font-medium text-gray-700">Ағымдағы құпия сөз</label> <input type="password" id="current-password" name="currentPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+          </div>
+          <div><label for="new-password" class="block text-sm font-medium text-gray-700">Жаңа құпия сөз</label> <input type="password" id="new-password" name="newPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+          </div>
+          <div><label for="confirm-password" class="block text-sm font-medium text-gray-700">Жаңа құпия сөзді растау</label> <input type="password" id="confirm-password" name="confirmPassword" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+          </div>
+          <div class="flex justify-end"><button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition-colors"> Құпия сөзді жаңарту </button>
+          </div>
+         </form>
+        </div>
+       </div><!-- Data Management -->
+       <div class="bg-white rounded-lg shadow border border-gray-200">
+        <div class="p-6 border-b border-gray-200">
+         <h3 class="text-lg font-semibold text-gray-900">Деректерді басқару</h3>
+        </div>
+        <div class="p-6">
+         <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+          <h4 class="text-sm font-medium text-red-900 mb-2">Қауіпті аймақ</h4>
+          <p class="text-sm text-red-700 mb-4">Барлық деректерді жою - бұл әрекетті қайтару мүмкін емес. Барлық пайдаланушылар, жобалар және портфолио элементтері жойылады.</p><button onclick="confirmDeleteAllData()" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors text-sm font-medium"> Барлық деректерді жою </button>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </main><!-- Footer -->
+   <footer class="bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+     <div class="text-center">
+      <p id="footer-text" class="text-gray-600">© 2024 Student Portfolio Platform. Built for academic excellence.</p>
+     </div>
+    </div>
+   </footer>
+  </div><!-- Add Portfolio Modal -->
+  <div id="add-portfolio-modal" class="fixed inset-0 z-50 hidden">
+   <div class="modal-backdrop fixed inset-0" onclick="hideAddPortfolioModal()"></div>
+   <div class="fixed inset-0 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-screen overflow-y-auto">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-lg font-semibold text-gray-900">Портфолио элементін қосу</h3><button onclick="hideAddPortfolioModal()" class="text-gray-400 hover:text-gray-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg></button>
+      </div>
+      <form id="add-portfolio-form" onsubmit="handleAddPortfolio(event)" class="space-y-4">
+       <div><label for="portfolio-type" class="block text-sm font-medium text-gray-700">Түрі</label> <select id="portfolio-type" name="type" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Түрін таңдаңыз</option> <option value="certificate">Сертификат</option> <option value="skill">Дағды</option> <option value="achievement">Жетістік</option> </select>
+       </div>
+       <div><label for="portfolio-title" class="block text-sm font-medium text-gray-700">Атауы</label> <input type="text" id="portfolio-title" name="title" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+       </div>
+       <div><label for="portfolio-description" class="block text-sm font-medium text-gray-700">Сипаттама</label> <textarea id="portfolio-description" name="description" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+       </div>
+       <div><label for="portfolio-date" class="block text-sm font-medium text-gray-700">Күні</label> <input type="date" id="portfolio-date" name="date" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+       </div>
+       <div><label class="block text-sm font-medium text-gray-700 mb-2">Файлдар (сертификаттар, дипломдар)</label>
+        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-indigo-400 transition-colors"><input type="file" id="portfolio-files" name="files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden" onchange="handlePortfolioFileSelect(event)"> <label for="portfolio-files" class="cursor-pointer">
+          <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+          </svg><p class="text-sm text-gray-600">Сертификат немесе құжат жүктеңіз</p><p class="text-xs text-gray-500 mt-1">PDF, JPG, PNG, DOC форматтары</p></label>
+        </div>
+        <div id="portfolio-file-list" class="mt-2 space-y-1"></div>
+       </div>
+       <div class="flex justify-end space-x-3 pt-4"><button type="button" onclick="hideAddPortfolioModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"> Болдырмау </button> <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition-colors"> Элемент қосу </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div><!-- Add Project Modal -->
+  <div id="add-project-modal" class="fixed inset-0 z-50 hidden">
+   <div class="modal-backdrop fixed inset-0" onclick="hideAddProjectModal()"></div>
+   <div class="fixed inset-0 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-screen overflow-y-auto">
+     <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-lg font-semibold text-gray-900">Жаңа жоба қосу</h3><button onclick="hideAddProjectModal()" class="text-gray-400 hover:text-gray-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg></button>
+      </div>
+      <form id="add-project-form" onsubmit="handleAddProject(event)" class="space-y-4">
+       <div><label for="project-title" class="block text-sm font-medium text-gray-700">Жоба атауы</label> <input type="text" id="project-title" name="title" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+       </div>
+       <div><label for="project-description" class="block text-sm font-medium text-gray-700">Сипаттама</label> <textarea id="project-description" name="description" rows="3" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+       </div>
+       <div><label for="project-category" class="block text-sm font-medium text-gray-700">Санат</label> <select id="project-category" name="category" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"> <option value="">Санатты таңдаңыз</option> <option value="web">Веб әзірлеу</option> <option value="mobile">Мобильді қолданба</option> <option value="design">Дизайн</option> <option value="data">Деректер ғылымы</option> <option value="other">Басқа</option> </select>
+       </div>
+       <div><label for="project-skills" class="block text-sm font-medium text-gray-700">Қолданылған технологиялар</label> <input type="text" id="project-skills" name="skills" placeholder="мысалы, React, Node.js, MongoDB" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+       </div>
+       <div><label for="project-status" class="block text-sm font-medium text-gray-700">Мәртебе</label> <select id="project-status" name="status" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"> <option value="in-progress">Орындалуда</option> <option value="completed">Аяқталды</option> <option value="planned">Жоспарланған</option> </select>
+       </div>
+       <div><label class="block text-sm font-medium text-gray-700 mb-2">Жоба файлдары</label>
+        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-indigo-400 transition-colors"><input type="file" id="project-files" name="files" multiple accept=".pdf,.doc,.docx,.zip,.rar,.jpg,.jpeg,.png,.gif,.mp4,.mov,.html,.css,.js,.json,.xml,.txt,.md,.py,.java,.cpp,.c,.php,.rb,.go,.ts,.jsx,.vue,.scss,.sass,.less" class="hidden" onchange="handleProjectFileSelect(event)"> <label for="project-files" class="cursor-pointer">
+          <svg class="w-8 h-8 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+          </svg><p class="text-sm text-gray-600">Файлдарды жүктеу үшін басыңыз немесе сүйреп апарыңыз</p><p class="text-xs text-gray-500 mt-1">Барлық файл түрлері: HTML, CSS, JS, PDF, DOC, ZIP, суреттер, видео</p></label>
+        </div>
+        <div id="project-file-list" class="mt-2 space-y-1"></div>
+       </div>
+       <div class="flex justify-end space-x-3 pt-4"><button type="button" onclick="hideAddProjectModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"> Болдырмау </button> <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition-colors"> Жоба жасау </button>
+       </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div><!-- Toast Notification -->
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden">
+   <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+    <p id="toast-message">Success!</p>
+   </div>
+  </div>
+  <script>
+        // Global state
+        // ===================================
+// ТОЛЫҚ ТҮЗЕТІЛГЕН JavaScript КОД
+// ===================================
+
+// Global state
+let currentUser = null;
+let currentPage = 'home';
+let portfolioItems = [];
+let projects = [];
+let currentFilter = 'all';
+let selectedProjectFiles = [];
+let selectedPortfolioFiles = [];
+let analyticsData = {
+    profileViews: 0,
+    projectViews: 0,
+    engagementRate: 0,
+    viewsHistory: []
+};
+
+// ===== ДҰРЫС saveToLocalStorage (деректер сақталады) =====
+async function saveToLocalStorage(key, data) {
+    try {
+        // 1. Серверден БАР деректерді аламыз
+        const res = await fetch(`/api/${key}`);
+        let existing = await res.json();
+        
+        // 2. Егер қате болса, бос массив жасаймыз
+        if (!Array.isArray(existing)) existing = [];
+        
+        // 3. Жаңа деректі қосамыз
+        existing.push(data);
+        
+        // 4. БАРЛЫҒЫН серверге жазамыз
+        await fetch(`/api/${key}/replace`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(existing)
+        });
+    } catch (e) {
+        console.error('Қате:', e);
+    }
+}
+
+async function loadFromLocalStorage(key) {
+    try {
+        const res = await fetch(`/api/${key}`);
+        if (!res.ok) return null;
+        return await res.json();
+    } catch (e) {
+        console.error('Error loading from server:', e);
+        return null;
+    }
+}
+
+// Initialize application
+async function initApp() {
+    console.log('Initializing app...');
+    
+    const savedUser = await loadFromLocalStorage('currentUser');
+    
+    if (savedUser && savedUser.id) {
+        currentUser = savedUser;
+        await loadUserData();
+        updateAuthState();
+        showPage('dashboard');
+    } else {
+        showPage('home');
+    }
+
+    initAnalyticsChart();
+    setTimeout(updateAuthState, 300);
+    
+}
+
+async function loadUserData() {
+    if (!currentUser) return;
+    
+    const allProjects = await loadFromLocalStorage('projects') || [];
+    const allPortfolio = await loadFromLocalStorage('portfolio') || [];
+    const allAnalytics = await loadFromLocalStorage('analytics') || {};
+    
+    projects = allProjects.filter(p => p.user_id === currentUser.id);
+    portfolioItems = allPortfolio.filter(p => p.user_id === currentUser.id);
+    analyticsData = allAnalytics[currentUser.id] || {
+        profileViews: 0,
+        projectViews: 0,
+        engagementRate: 0,
+        viewsHistory: []
+    };
+    
+    updateDashboardStats();
+    updateAnalytics();
+    renderPortfolioItems();
+    renderProjects();
+    renderRecentActivity();
+    renderPopularProjects();
+}
+
+// File handling functions
+function handleProjectFileSelect(event) {
+    const files = Array.from(event.target.files);
+    selectedProjectFiles = files;
+    displayFileList(files, 'project-file-list');
+}
+
+function handlePortfolioFileSelect(event) {
+    const files = Array.from(event.target.files);
+    selectedPortfolioFiles = files;
+    displayFileList(files, 'portfolio-file-list');
+}
+
+function displayFileList(files, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    
+    files.forEach((file, index) => {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+            <span class="text-sm text-gray-700">${file.name} (${formatFileSize(file.size)})</span>
+            <button type="button" onclick="removeFile(${index}, '${containerId}')" class="text-red-500 hover:text-red-700">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        `;
+        container.appendChild(fileItem);
+    });
+}
+
+function removeFile(index, containerId) {
+    if (containerId === 'project-file-list') {
+        selectedProjectFiles.splice(index, 1);
+        displayFileList(selectedProjectFiles, containerId);
+    } else if (containerId === 'portfolio-file-list') {
+        selectedPortfolioFiles.splice(index, 1);
+        displayFileList(selectedPortfolioFiles, containerId);
+    }
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+function convertFilesToBase64(files) {
+    return Promise.all(files.map(file => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve({
+                name: file.name,
+                type: file.type,
+                size: file.size,
+                data: reader.result
+            });
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }));
+}
+
+// Page navigation
+function showPage(page) {
+    document.querySelectorAll('.page').forEach(p =>
+        p.classList.add('hidden')
+    );
+
+    const target = document.getElementById(`${page}-page`);
+    if (target) {
+        target.classList.remove('hidden');
+        currentPage = page;
+    }
+
+    updateNavigation();
+    trackView(page);
+
+    if (page === "analytics") loadAnalytics();
+    if (page === "profile" && currentUser) loadProfileData();
+}
+
+function updateNavigation() {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-indigo-600', 'bg-indigo-50');
+        link.classList.add('text-gray-700');
+    });
+}
+
+// Authentication functions
+async function handleLogin(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const res = await fetch("/api/users");
+    const users = await res.json();
+
+    const foundUser = users.find(u => u.email === email && u.password === password);
+
+    if (!foundUser) {
+        showToast("Қате email немесе құпиясөз", "error");
+        return;
+    }
+
+    currentUser = foundUser;
+    await fetch('/api/currentUser/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentUser)
+    });
+
+    await loadUserData();
+    showToast("Қош келдіңіз!");
+    updateAuthState();
+    showPage("dashboard");
+}
+
+async function handleRegister(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const errorDiv = document.getElementById('register-error');
+
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const firstname = formData.get('firstname');
+    const lastname = formData.get('lastname');
+    const username = formData.get('username');
+
+    const users = await loadFromLocalStorage('users') || [];
+
+    if (users.find(u => u.email === email)) {
+        errorDiv.textContent = 'Бұл электрондық пошта бұрын тіркелген';
+        errorDiv.classList.remove('hidden');
+        return;
+    }
+
+    const userId = 'user_' + Date.now();
+    const newUser = {
+        id: userId,
+        email,
+        password,
+        firstname,
+        lastname,
+        username,
+        bio: '',
+        created_at: new Date().toISOString()
+    };
+
+    await saveToLocalStorage('users', newUser);
+
+    currentUser = newUser;
+    await fetch('/api/currentUser/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentUser)
+    });
+
+    await loadUserData();
+    showPage('dashboard');
+    updateAuthState();
+    showToast('Аккаунт сәтті жасалды!');
+}
+
+function logout() {
+    currentUser = null;
+    fetch('/api/currentUser/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(null)
+    });
+    
+    updateAuthState();
+    showPage('home');
+    showToast('Сәтті шықтыңыз');
+    
+    portfolioItems = [];
+    projects = [];
+    analyticsData = {
+        profileViews: 0,
+        projectViews: 0,
+        engagementRate: 0,
+        viewsHistory: []
+    };
+    updateAnalytics();
+}
+
+function updateAuthState() {
+    const authButtons = document.getElementById('auth-buttons');
+    const userMenu = document.getElementById('user-menu');
+    const protectedLinks = ['dashboard-link', 'portfolio-link', 'projects-link', 'analytics-link'];
+
+    if (currentUser) {
+        if (authButtons) authButtons.classList.add('hidden');
+        if (userMenu) userMenu.classList.remove('hidden');
+
+        protectedLinks.forEach(linkId => {
+            const link = document.getElementById(linkId);
+            if (link) link.classList.remove('hidden');
+        });
+
+    } else {
+        if (authButtons) authButtons.classList.remove('hidden');
+        if (userMenu) userMenu.classList.add('hidden');
+
+        protectedLinks.forEach(linkId => {
+            const link = document.getElementById(linkId);
+            if (link) link.classList.add('hidden');
+        });
+    }
+}
+
+function toggleUserMenu() {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.classList.toggle('hidden');
+}
+
+// ===== ЖАҢА ФУНКЦИЯ: loadAnalytics (рандом сандар) =====
+async function loadAnalytics() {
+    if (!currentUser) return;
+
+    const res = await fetch("/api/analytics");
+    const all = await res.json();
+
+    analyticsData = all[currentUser.id] || {
+        profileViews: Math.floor(Math.random() * 500) + 50,
+        projectViews: Math.floor(Math.random() * 300) + 20,
+        engagementRate: Math.floor(Math.random() * 100),
+        viewsHistory: generateRandomViewsHistory()
+    };
+
+    // Серверге жазамыз
+    all[currentUser.id] = analyticsData;
+    await fetch('/api/analytics/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(all)
+    });
+
+    document.getElementById("profile-views").textContent = analyticsData.profileViews;
+    document.getElementById("project-views").textContent = analyticsData.projectViews;
+    document.getElementById("engagement-rate").textContent = analyticsData.engagementRate + "%";
+    document.getElementById("dashboard-profile-views").textContent = analyticsData.profileViews;
+
+    updateAnalyticsChart();
+}
+
+// Рандом тарих жасау
+function generateRandomViewsHistory() {
+    const history = [];
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        history.push({
+            date: date.toISOString().slice(0, 10),
+            views: Math.floor(Math.random() * 100) + 10
+        });
+    }
+    return history;
+}
+
+async function updateAnalytics() {
+    if (!currentUser) return;
+
+    const res = await fetch("/api/analytics");
+    const all = await res.json();
+
+    analyticsData = all[currentUser.id] || {
+        profileViews: 0,
+        projectViews: 0,
+        engagementRate: 0,
+        viewsHistory: []
+    };
+
+    document.getElementById("profile-views").textContent = analyticsData.profileViews;
+    document.getElementById("project-views").textContent = analyticsData.projectViews;
+    document.getElementById("engagement-rate").textContent = analyticsData.engagementRate + "%";
+
+    if (document.getElementById("dashboard-profile-views")) {
+        document.getElementById("dashboard-profile-views").textContent = analyticsData.profileViews;
+    }
+
+    updateAnalyticsChart();
+}
+
+function updateChangeIndicator(elementId, change) {
+    const element = document.getElementById(elementId);
+    if (change > 0) {
+        element.textContent = `Өткен айдан +${change}%`;
+        element.className = 'text-sm text-green-600';
+    } else if (change < 0) {
+        element.textContent = `Өткен айдан ${change}%`;
+        element.className = 'text-sm text-red-600';
+    } else {
+        element.textContent = 'Өзгеріс жоқ';
+        element.className = 'text-sm text-gray-500';
+    }
+}
+
+function initAnalyticsChart() {
+    const canvas = document.getElementById('viewsChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    drawChart(ctx, canvas.width, canvas.height);
+}
+
+function updateAnalyticsChart() {
+    const canvas = document.getElementById('viewsChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawChart(ctx, canvas.width, canvas.height);
+}
+
+function drawChart(ctx, width, height) {
+    if (!analyticsData.viewsHistory || !analyticsData.viewsHistory.length) return;
+    
+    const padding = 40;
+    const chartWidth = width - 2 * padding;
+    const chartHeight = height - 2 * padding;
+    
+    const maxViews = Math.max(...analyticsData.viewsHistory.map(d => d.views));
+    const minViews = Math.min(...analyticsData.viewsHistory.map(d => d.views));
+    const range = maxViews - minViews || 1;
+    
+    ctx.strokeStyle = '#e5e7eb';
+    ctx.lineWidth = 1;
+    
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, height - padding);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(padding, height - padding);
+    ctx.lineTo(width - padding, height - padding);
+    ctx.stroke();
+    
+    ctx.strokeStyle = '#4f46e5';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    
+    analyticsData.viewsHistory.forEach((point, index) => {
+        const x = padding + (index / (analyticsData.viewsHistory.length - 1)) * chartWidth;
+        const y = height - padding - ((point.views - minViews) / range) * chartHeight;
+        
+        if (index === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    });
+    
+    ctx.stroke();
+    
+    ctx.fillStyle = '#4f46e5';
+    analyticsData.viewsHistory.forEach((point, index) => {
+        const x = padding + (index / (analyticsData.viewsHistory.length - 1)) * chartWidth;
+        const y = height - padding - ((point.views - minViews) / range) * chartHeight;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, 2 * Math.PI);
+        ctx.fill();
+    });
+    
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'center';
+    
+    for (let i = 0; i <= 5; i++) {
+        const value = minViews + (range * i / 5);
+        const y = height - padding - (i / 5) * chartHeight;
+        ctx.fillText(Math.round(value).toString(), padding - 20, y + 4);
+    }
+}
+
+function renderPopularProjects() {
+    const container = document.getElementById('popular-projects');
+    if (!projects.length) {
+        container.innerHTML = `
+            <div class="text-center py-8 text-gray-500">
+                <p>Жобалар қосылғаннан кейін статистика көрсетіледі</p>
+            </div>
+        `;
+        return;
+    }
+    
+    const projectsWithViews = projects.map(project => ({
+        ...project,
+        views: Math.floor(Math.random() * 100) + 10
+    })).sort((a, b) => b.views - a.views).slice(0, 5);
+    
+    container.innerHTML = projectsWithViews.map(project => `
+        <div class="flex justify-between items-center py-2">
+            <span class="text-sm text-gray-600">${project.title}</span>
+            <span class="text-sm font-medium text-gray-900">${project.views} көру</span>
+        </div>
+    `).join('');
+}
+
+// Portfolio functions
+function showAddPortfolioModal() {
+    document.getElementById('add-portfolio-modal').classList.remove('hidden');
+    selectedPortfolioFiles = [];
+    document.getElementById('portfolio-file-list').innerHTML = '';
+}
+
+function hideAddPortfolioModal() {
+    document.getElementById('add-portfolio-modal').classList.add('hidden');
+    document.getElementById('add-portfolio-form').reset();
+    selectedPortfolioFiles = [];
+    document.getElementById('portfolio-file-list').innerHTML = '';
+}
+
+async function handleAddPortfolio(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    let filesData = [];
+    if (selectedPortfolioFiles.length > 0) {
+        filesData = await convertFilesToBase64(selectedPortfolioFiles);
+    }
+
+    const portfolioItem = {
+        id: 'portfolio_' + Date.now(),
+        user_id: currentUser.id,
+        item_type: formData.get('type'),
+        title: formData.get('title'),
+        description: formData.get('description') || '',
+        item_date: formData.get('date'),
+        files: filesData,
+        created_at: new Date().toISOString()
+    };
+
+    await saveToLocalStorage('portfolio', portfolioItem);
+
+    portfolioItems.push(portfolioItem);
+    hideAddPortfolioModal();
+    showToast('Портфолио элементі сәтті қосылды!');
+    renderPortfolioItems();
+    updateDashboardStats();
+    renderRecentActivity();
+}
+
+function filterPortfolio(type) {
+    currentFilter = type;
+    
+    document.querySelectorAll('.portfolio-tab').forEach(tab => {
+        tab.classList.remove('border-indigo-500', 'text-indigo-600', 'active');
+        tab.classList.add('border-transparent', 'text-gray-500');
+    });
+    
+    event.target.classList.remove('border-transparent', 'text-gray-500');
+    event.target.classList.add('border-indigo-500', 'text-indigo-600', 'active');
+    
+    renderPortfolioItems();
+}
+
+function renderPortfolioItems() {
+    const grid = document.getElementById('portfolio-grid');
+    const filteredItems = currentFilter === 'all' 
+        ? portfolioItems 
+        : portfolioItems.filter(item => item.item_type === currentFilter);
+
+    if (filteredItems.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <div class="text-gray-400 mb-4">
+                    <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Әлі элементтер жоқ</h3>
+                <p class="text-gray-600 mb-4">Алғашқы элементіңізді қосу арқылы портфолио құруды бастаңыз.</p>
+                <button onclick="showAddPortfolioModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                    Элемент қосу
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = filteredItems.map(item => `
+        <div class="bg-white rounded-lg shadow border border-gray-200 p-6 card-hover">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">${item.title}</h3>
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-full ${getTypeColor(item.item_type)}">
+                        ${getTypeLabel(item.item_type)}
+                    </span>
+                </div>
+                <button onclick="deletePortfolioItem('${item.id}')" class="text-gray-400 hover:text-red-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">${item.description || 'Сипаттама берілмеген'}</p>
+            ${item.files && item.files.length > 0 ? `
+                <div class="mb-4">
+                    <h4 class="text-sm font-medium text-gray-700 mb-2">Файлдар:</h4>
+                    <div class="space-y-1">
+                        ${item.files.map(file => `
+                            <div class="flex items-center justify-between text-sm bg-gray-50 p-2 rounded">
+                                <span class="text-gray-600">${file.name}</span>
+                                <button onclick="downloadFile('${file.data}', '${file.name}')" class="text-indigo-600 hover:text-indigo-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-4-4V4"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : ''}
+            <div class="text-sm text-gray-500">
+                ${new Date(item.item_date).toLocaleDateString()}
+            </div>
+        </div>
+    `).join('');
+}
+
+function getTypeColor(type) {
+    const colors = {
+        certificate: 'bg-blue-100 text-blue-800',
+        skill: 'bg-green-100 text-green-800',
+        achievement: 'bg-purple-100 text-purple-800'
+    };
+    return colors[type] || 'bg-gray-100 text-gray-800';
+}
+
+function getTypeLabel(type) {
+    const labels = {
+        certificate: 'Сертификат',
+        skill: 'Дағды',
+        achievement: 'Жетістік'
+    };
+    return labels[type] || type;
+}
+
+async function deletePortfolioItem(itemId) {
+    const allPortfolio = await loadFromLocalStorage('portfolio') || [];
+    const updatedPortfolio = allPortfolio.filter(p => p.id !== itemId);
+    
+    await fetch('/api/portfolio/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedPortfolio)
+    });
+    
+    portfolioItems = portfolioItems.filter(p => p.id !== itemId);
+    renderPortfolioItems();
+    updateDashboardStats();
+    renderRecentActivity();
+    showToast('Элемент сәтті жойылды');
+}
+
+// Project functions
+function showAddProjectModal() {
+    document.getElementById('add-project-modal').classList.remove('hidden');
+    selectedProjectFiles = [];
+    document.getElementById('project-file-list').innerHTML = '';
+}
+
+function hideAddProjectModal() {
+    document.getElementById('add-project-modal').classList.add('hidden');
+    document.getElementById('add-project-form').reset();
+    selectedProjectFiles = [];
+    document.getElementById('project-file-list').innerHTML = '';
+}
+
+async function handleAddProject(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    
+    let filesData = [];
+    if (selectedProjectFiles.length > 0) {
+        filesData = await convertFilesToBase64(selectedProjectFiles);
+    }
+
+    const project = {
+        id: 'project_' + Date.now(),
+        user_id: currentUser.id,
+        title: formData.get('title'),
+        description: formData.get('description'),
+        category: formData.get('category'),
+        skills: formData.get('skills') || '',
+        status: formData.get('status'),
+        files: filesData,
+        created_at: new Date().toISOString()
+    };
+
+    await saveToLocalStorage('projects', project);
+
+    projects.push(project);
+    hideAddProjectModal();
+    showToast('Жоба сәтті жасалды!');
+    renderProjects();
+    updateDashboardStats();
+    renderRecentActivity();
+    renderPopularProjects();
+}
+
+function renderProjects() {
+    const grid = document.getElementById('projects-grid');
+    
+    if (projects.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <div class="text-gray-400 mb-4">
+                    <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Әлі жобалар жоқ</h3>
+                <p class="text-gray-600 mb-4">Жұмысыңызды көрсету үшін алғашқы жобаңызды жасаңыз.</p>
+                <button onclick="showAddProjectModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                    Жаңа жоба
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = projects.map(project => `
+        <div class="bg-white rounded-lg shadow border border-gray-200 p-6 card-hover">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">${project.title}</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+                            ${project.category}
+                        </span>
+                        <span class="inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(project.status)}">
+                            ${getStatusLabel(project.status)}
+                        </span>
+                    </div>
+                </div>
+                <button onclick="deleteProject('${project.id}')" class="text-gray-400 hover:text-red-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="text-gray-600 mb-4">${project.description}</p>
+            ${project.skills ? `<p class="text-sm text-gray-500 mb-2"><strong>Технологиялар:</strong> ${project.skills}</p>` : ''}
+            ${project.files && project.files.length > 0 ? `
+                <div class="mb-4">
+                    <h4 class="text-sm font-medium text-gray-700 mb-2">Жоба файлдары:</h4>
+                    <div class="space-y-1">
+                        ${project.files.map(file => `
+                            <div class="flex items-center justify-between text-sm bg-gray-50 p-2 rounded">
+                                <span class="text-gray-600">${file.name}</span>
+                                <button onclick="downloadFile('${file.data}', '${file.name}')" class="text-indigo-600 hover:text-indigo-800">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-4-4V4"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : ''}
+            <div class="text-sm text-gray-500">
+                Жасалған күні: ${new Date(project.created_at).toLocaleDateString()}
+            </div>
+        </div>
+    `).join('');
+}
+
+function getStatusColor(status) {
+    const colors = {
+        'completed': 'bg-green-100 text-green-800',
+        'in-progress': 'bg-yellow-100 text-yellow-800',
+        'planned': 'bg-gray-100 text-gray-800'
+    };
+    return colors[status] || 'bg-gray-100 text-gray-800';
+}
+
+function getStatusLabel(status) {
+    const labels = {
+        'completed': 'Аяқталды',
+        'in-progress': 'Орындалуда',
+        'planned': 'Жоспарланған'
+    };
+    return labels[status] || status;
+}
+
+async function deleteProject(projectId) {
+    const allProjects = await loadFromLocalStorage('projects') || [];
+    const updatedProjects = allProjects.filter(p => p.id !== projectId);
+    
+    await fetch('/api/projects/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedProjects)
+    });
+    
+    projects = projects.filter(p => p.id !== projectId);
+    renderProjects();
+    updateDashboardStats();
+    renderRecentActivity();
+    renderPopularProjects();
+    showToast('Жоба сәтті жойылды');
+}
+
+function downloadFile(dataUrl, filename) {
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function updateDashboardStats() {
+    document.getElementById('projects-count').textContent = projects.length;
+    document.getElementById('achievements-count').textContent = portfolioItems.filter(item => item.item_type === 'achievement').length;
+    document.getElementById('skills-count').textContent = portfolioItems.filter(item => item.item_type === 'skill').length;
+}
+
+function renderRecentActivity() {
+    const recentProjects = document.getElementById('recent-projects');
+    const recentAchievements = document.getElementById('recent-achievements');
+    
+    const latestProjects = projects.slice(-3);
+    const latestAchievements = portfolioItems.filter(item => item.item_type === 'achievement').slice(-3);
+    
+    if (latestProjects.length > 0) {
+        recentProjects.innerHTML = latestProjects.map(project => `
+            <div class="flex items-center justify-between py-2">
+                <div>
+                    <p class="text-sm font-medium text-gray-900">${project.title}</p>
+                    <p class="text-xs text-gray-500">${project.category}</p>
+                </div>
+                <span class="text-xs px-2 py-1 rounded-full ${getStatusColor(project.status)}">
+                    ${getStatusLabel(project.status)}
+                </span>
+            </div>
+        `).join('');
+    } else {
+        recentProjects.innerHTML = '<p class="text-gray-500 text-center py-8">Әлі жобалар жоқ. <a href="#" onclick="showPage(\'projects\')" class="text-indigo-600 hover:text-indigo-500">Алғашқы жобаңызды жасаңыз</a></p>';
+    }
+    
+    if (latestAchievements.length > 0) {
+        recentAchievements.innerHTML = latestAchievements.map(achievement => `
+            <div class="flex items-center justify-between py-2">
+                <div>
+                    <p class="text-sm font-medium text-gray-900">${achievement.title}</p>
+                    <p class="text-xs text-gray-500">${new Date(achievement.item_date).toLocaleDateString()}</p>
+                </div>
+            </div>
+        `).join('');
+    } else {
+        recentAchievements.innerHTML = '<p class="text-gray-500 text-center py-8">Әлі жетістіктер жоқ. <a href="#" onclick="showPage(\'portfolio\')" class="text-indigo-600 hover:text-indigo-500">Алғашқы жетістігіңізді қосыңыз</a></p>';
+    }
+}
+
+function loadProfileData() {
+    if (currentUser) {
+        document.getElementById('profile-firstname').value = currentUser.firstname || '';
+        document.getElementById('profile-lastname').value = currentUser.lastname || '';
+        document.getElementById('profile-email').value = currentUser.email || '';
+        document.getElementById('profile-username').value = currentUser.username || '';
+        document.getElementById('profile-bio').value = currentUser.bio || '';
+    }
+}
+
+async function handleProfileUpdate(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const updatedUser = {
+        ...currentUser,
+        firstname: formData.get('firstname'),
+        lastname: formData.get('lastname'),
+        email: formData.get('email'),
+        username: formData.get('username'),
+        bio: formData.get('bio')
+    };
+
+    const res = await fetch("/api/users");
+    const users = await res.json();
+
+    const index = users.findIndex(u => u.id === currentUser.id);
+
+    if (index === -1) {
+        showToast("Қолданушы табылмады!", "error");
+        return;
+    }
+
+    users[index] = updatedUser;
+
+    await fetch("/api/users/replace", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(users)
+    });
+
+    currentUser = updatedUser;
+    await fetch('/api/currentUser/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentUser)
+    });
+
+    showToast("Профиль сәтті жаңартылды!");
+}
+
+async function handlePasswordChange(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const currentPassword = formData.get("currentPassword");
+    const newPassword = formData.get("newPassword");
+    const confirmPassword = formData.get("confirmPassword");
+
+    if (newPassword !== confirmPassword) {
+        showToast("Құпия сөздер сәйкес келмейді", "error");
+        return;
+    }
+
+    const res = await fetch("/api/users");
+    const users = await res.json();
+
+    const userIndex = users.findIndex(u => u.id === currentUser.id);
+
+    if (userIndex === -1) {
+        showToast("Қате! Қолданушы табылмады!", "error");
+        return;
+    }
+
+    if (users[userIndex].password !== currentPassword) {
+        showToast("Ағымдағы құпия сөз қате", "error");
+        return;
+    }
+
+    users[userIndex].password = newPassword;
+
+    await fetch("/api/users/replace", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(users)
+    });
+
+    currentUser.password = newPassword;
+    await fetch('/api/currentUser/replace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentUser)
+    });
+
+    showToast("Құпия сөз сәтті жаңартылды!");
+    event.target.reset();
+}
+
+async function trackView(page) {
+    if (!currentUser) return;
+
+    await fetch("/api/track-view", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+            userId: currentUser.id,
+            page: page
+        })
+    });
+}
+
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+    
+    toastMessage.textContent = message;
+    
+    const toastContainer = toast.querySelector('div');
+    if (type === 'error') {
+        toastContainer.className = 'bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg';
+    } else if (type === 'info') {
+        toastContainer.className = 'bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg';
+    } else {
+        toastContainer.className = 'bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+    }
+    
+    toast.classList.remove('hidden');
+    
+    setTimeout(() => {
+        toast.classList.add('hidden');
+    }, 4000);
+}
+
+function confirmDeleteAllData() {
+    const confirmDiv = document.createElement('div');
+    confirmDiv.className = 'fixed inset-0 z-50 flex items-center justify-center';
+    confirmDiv.innerHTML = `
+        <div class="modal-backdrop fixed inset-0"></div>
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6 relative z-10">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Барлық деректерді жою?</h3>
+            <p class="text-gray-600 mb-6">Бұл әрекет барлық пайдаланушыларды, жобаларды және портфолио элементтерін жояды. Бұл әрекетті қайтару мүмкін емес!</p>
+            <div class="flex justify-end space-x-3">
+                <button onclick="this.closest('.fixed').remove()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+                    Болдырмау
+                </button>
+                <button onclick="deleteAllData()" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors">
+                    Иә, барлығын жою
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(confirmDiv);
+}
+
+async function deleteAllData() {
+    document.querySelectorAll(".modal-backdrop, .fixed, .absolute, .z-50").forEach(el => {
+        if (el.closest("#app")) el.remove();
+    });
+
+    await fetch("/api/clear-all", {
+        method: "POST"
+    });
+
+    currentUser = null;
+    projects = [];
+    portfolioItems = [];
+
+    updateAuthState();
+    showPage("home");
+
+    setTimeout(() => {
+        showToast("Барлық деректер сәтті жойылды!");
+    }, 300);
+}
+
+document.addEventListener('click', function(event) {
+    const userMenu = document.getElementById('user-menu');
+    const userDropdown = document.getElementById('user-dropdown');
+    
+    if (userMenu && !userMenu.contains(event.target)) {
+        userDropdown.classList.add('hidden');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', initApp)
+// ===================================
+// ЖҰМЫС БЕРУШІ JAVASCRIPT ФУНКЦИЯЛАРЫ
+// (index.html ішіндегі <script> тегінің СОҢЫНА қосу керек)
+// ===================================
+
+// Жұмыс беруші глобал айнымалысы
+// ===================================
+// ЖҰМЫС БЕРУШІ JAVASCRIPT ФУНКЦИЯЛАРЫ
+// ===================================
+
+let currentEmployer = null;
+let allStudents = [];
+let selectedStudentId = null;
+
+// Жұмыс беруші кіру
+async function handleEmployerLogin(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    try {
+        const response = await fetch("/api/employers/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            currentEmployer = result.employer;
+            showToast(`Қош келдіңіз, ${currentEmployer.company}!`);
+            await loadStudentsList();
+            showPage("employer-dashboard");
+        } else {
+            const errorDiv = document.getElementById('employer-login-error');
+            errorDiv.textContent = result.error || "Қате email немесе құпия сөз";
+            errorDiv.classList.remove("hidden");
+        }
+    } catch (error) {
+        console.error("Кіру қатесі:", error);
+        showToast("Сервер қатесі", "error");
+    }
+}
+
+// Жұмыс беруші тіркелу
+async function handleEmployerRegister(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const errorDiv = document.getElementById('employer-register-error');
+
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const firstname = formData.get('firstname');
+    const lastname = formData.get('lastname');
+    const company = formData.get('company');
+
+    try {
+        const response = await fetch("/api/employers/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password, firstname, lastname, company })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            currentEmployer = result.employer;
+            showToast('Жұмыс беруші аккаунты жасалды!');
+            await loadStudentsList();
+            showPage('employer-dashboard');
+        } else {
+            errorDiv.textContent = result.error || "Тіркелу қатесі";
+            errorDiv.classList.remove('hidden');
+        }
+    } catch (error) {
+        console.error("Тіркелу қатесі:", error);
+        errorDiv.textContent = "Сервер қатесі";
+        errorDiv.classList.remove('hidden');
+    }
+}
+
+// Студенттер тізімін жүктеу
+async function loadStudentsList() {
+    try {
+        const res = await fetch("/api/employer/students");
+        allStudents = await res.json();
+        renderStudentsList();
+    } catch (e) {
+        console.error("Студенттерді жүктеу қатесі:", e);
+        showToast("Студенттерді жүктеу қатесі", "error");
+    }
+}
+
+// Студенттер тізімін көрсету
+function renderStudentsList() {
+    const grid = document.getElementById('students-grid');
+
+    if (!allStudents || allStudents.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <div class="text-gray-400 mb-4">
+                    <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Әлі студенттер жоқ</h3>
+                <p class="text-gray-600">Студенттер тіркелгеннен кейін олар осында көрсетіледі</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = allStudents.map(student => `
+        <div class="bg-white rounded-lg shadow border border-gray-200 p-6 card-hover">
+            <div class="flex items-start space-x-4 mb-4">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-lg font-bold text-purple-600">
+                        ${student.firstname ? student.firstname.charAt(0) : 'S'}${student.lastname ? student.lastname.charAt(0) : 'T'}
+                    </span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg font-semibold text-gray-900 truncate">
+                        ${student.firstname || ''} ${student.lastname || ''}
+                    </h3>
+                    <p class="text-sm text-gray-600 truncate">@${student.username || 'student'}</p>
+                    <p class="text-xs text-gray-500 mt-1">${student.email || ''}</p>
+                </div>
+            </div>
+            
+            ${student.bio ? `<p class="text-sm text-gray-600 mb-4 line-clamp-2">${student.bio}</p>` : ''}
+            
+            <div class="space-y-2 mb-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Жобалар:</span>
+                    <span class="font-medium">${student.projectsCount || 0}</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Портфолио:</span>
+                    <span class="font-medium">${student.portfolioCount || 0}</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Көрулер:</span>
+                    <span class="font-medium">${student.profileViews || 0}</span>
+                </div>
+            </div>
+            
+            <div class="flex space-x-2">
+                <button onclick="viewStudentDetail('${student.id}')" 
+                        class="flex-1 bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors text-sm">
+                    Портфолионы қарау
+                </button>
+                <button onclick="downloadStudentCV('${student.id}')" 
+                        class="flex-1 border border-purple-600 text-purple-600 px-4 py-2 rounded-md hover:bg-purple-50 transition-colors text-sm">
+                    CV жүктеу
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Студент іздеу
+function filterStudents() {
+    const searchInput = document.getElementById('student-search').value.toLowerCase();
+    const grid = document.getElementById('students-grid');
+
+    if (!allStudents || allStudents.length === 0) return;
+
+    const filtered = allStudents.filter(student => {
+        const fullName = `${student.firstname || ''} ${student.lastname || ''}`.toLowerCase();
+        const username = (student.username || '').toLowerCase();
+        const email = (student.email || '').toLowerCase();
+        const bio = (student.bio || '').toLowerCase();
+        
+        return fullName.includes(searchInput) || 
+               username.includes(searchInput) || 
+               email.includes(searchInput) ||
+               bio.includes(searchInput);
+    });
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <p class="text-gray-500">Іздеу бойынша ешнәрсе табылмады</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = filtered.map(student => `
+        <div class="bg-white rounded-lg shadow border border-gray-200 p-6 card-hover">
+            <div class="flex items-start space-x-4 mb-4">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-lg font-bold text-purple-600">
+                        ${student.firstname ? student.firstname.charAt(0) : 'S'}${student.lastname ? student.lastname.charAt(0) : 'T'}
+                    </span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-lg font-semibold text-gray-900 truncate">
+                        ${student.firstname || ''} ${student.lastname || ''}
+                    </h3>
+                    <p class="text-sm text-gray-600 truncate">@${student.username || 'student'}</p>
+                </div>
+            </div>
+            
+            <div class="space-y-2 mb-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Жобалар:</span>
+                    <span class="font-medium">${student.projectsCount || 0}</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-600">Портфолио:</span>
+                    <span class="font-medium">${student.portfolioCount || 0}</span>
+                </div>
+            </div>
+            
+            <button onclick="viewStudentDetail('${student.id}')" 
+                    class="w-full bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors text-sm">
+                Толық ақпарат
+            </button>
+        </div>
+    `).join('');
+}
+
+// Студенттің толық мәліметін көрсету
+async function viewStudentDetail(studentId) {
+    selectedStudentId = studentId;
+    
+    try {
+        const res = await fetch(`/api/employer/student/${studentId}`);
+        const data = await res.json();
+
+        // Студент ақпаратын көрсету
+        document.getElementById('student-detail-avatar').textContent = 
+            (data.user.firstname ? data.user.firstname.charAt(0) : '') + 
+            (data.user.lastname ? data.user.lastname.charAt(0) : '');
+        document.getElementById('student-detail-name').textContent = 
+            `${data.user.firstname || ''} ${data.user.lastname || ''}`;
+        document.getElementById('student-detail-email').textContent = data.user.email || 'Email жоқ';
+        document.getElementById('student-detail-bio').textContent = 
+            data.user.bio || 'Өзі туралы мәлімет жоқ';
+
+        // Статистика
+        document.getElementById('student-detail-projects-count').textContent = data.projects.length;
+        document.getElementById('student-detail-portfolio-count').textContent = data.portfolio.length;
+        document.getElementById('student-detail-views').textContent = data.analytics.profileViews || 0;
+
+        // Жобаларды көрсету
+        renderStudentProjects(data.projects);
+
+        // Портфолионы көрсету
+        renderStudentPortfolio(data.portfolio);
+
+        showPage('employer-student-detail');
+    } catch (e) {
+        console.error("Студент деректерін жүктеу қатесі:", e);
+        showToast("Студент деректерін жүктеу қатесі", "error");
+    }
+}
+
+// Студент жобаларын көрсету
+function renderStudentProjects(projects) {
+    const container = document.getElementById('student-detail-projects');
+
+    if (!projects || projects.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 text-center py-8">Әлі жобалар жоқ</p>';
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="space-y-4">
+            ${projects.map(project => `
+                <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-semibold text-gray-900">${project.title}</h4>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">
+                                ${project.category || 'web'}
+                            </span>
+                            <span class="text-xs px-2 py-1 rounded-full ${getStatusColor(project.status)}">
+                                ${getStatusLabel(project.status)}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-3">${project.description || 'Сипаттама жоқ'}</p>
+                    
+                    ${project.skills ? `
+                        <p class="text-xs text-gray-500 mb-2">
+                            <strong>Технологиялар:</strong> ${project.skills}
+                        </p>
+                    ` : ''}
+                    
+                    ${project.files && project.files.length > 0 ? `
+                        <div class="mt-3">
+                            <p class="text-xs font-medium text-gray-700 mb-1">Файлдар:</p>
+                            <div class="space-y-1">
+                                ${project.files.map(file => `
+                                    <div class="flex items-center justify-between text-xs bg-gray-50 p-2 rounded">
+                                        <span class="text-gray-600 truncate flex-1 mr-2">${file.name}</span>
+                                        <div class="flex space-x-1">
+                                            <button onclick="previewFile('${file.data}', '${file.name}')" 
+                                                    class="text-blue-600 hover:text-blue-800"
+                                                    title="Ашу">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                                </svg>
+                                            </button>
+                                            <button onclick="downloadFile('${file.data}', '${file.name}')" 
+                                                    class="text-purple-600 hover:text-purple-800"
+                                                    title="Жүктеу">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-4-4V4"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <p class="text-xs text-gray-400 mt-3">
+                        Жасалды: ${new Date(project.created_at).toLocaleDateString()}
+                    </p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+// Студент портфолиосын көрсету
+function renderStudentPortfolio(portfolio) {
+    const container = document.getElementById('student-detail-portfolio');
+
+    if (!portfolio || portfolio.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 text-center py-8">Әлі портфолио элементтері жоқ</p>';
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${portfolio.map(item => `
+                <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-semibold text-gray-900">${item.title}</h4>
+                        <span class="text-xs px-2 py-1 rounded-full ${getTypeColor(item.item_type)}">
+                            ${getTypeLabel(item.item_type)}
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 mb-3">${item.description || 'Сипаттама жоқ'}</p>
+                    
+                    ${item.files && item.files.length > 0 ? `
+                        <div class="mt-3">
+                            <p class="text-xs font-medium text-gray-700 mb-1">Құжаттар:</p>
+                            <div class="space-y-1">
+                                ${item.files.map(file => `
+                                    <div class="flex items-center justify-between text-xs bg-gray-50 p-2 rounded">
+                                        <span class="text-gray-600 truncate flex-1 mr-2">${file.name}</span>
+                                        <div class="flex space-x-1">
+                                            <button onclick="previewFile('${file.data}', '${file.name}')" 
+                                                    class="text-blue-600 hover:text-blue-800"
+                                                    title="Ашу">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                                </svg>
+                                            </button>
+                                            <button onclick="downloadFile('${file.data}', '${file.name}')" 
+                                                    class="text-purple-600 hover:text-purple-800"
+                                                    title="Жүктеу">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-4-4V4"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <p class="text-xs text-gray-400 mt-3">
+                        Күні: ${new Date(item.item_date).toLocaleDateString()}
+                    </p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+// Файлды алдын ала қарау
+function previewFile(dataUrl, filename) {
+    // Жаңа терезеді ашу
+    const newWindow = window.open();
+    if (filename.toLowerCase().endsWith('.pdf')) {
+        newWindow.document.write(`
+            <html>
+                <head><title>${filename}</title></head>
+                <body style="margin:0; padding:0; height:100vh;">
+                    <iframe src="${dataUrl}" style="width:100%; height:100vh; border:none;"></iframe>
+                </body>
+            </html>
+        `);
+    } else if (filename.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
+        newWindow.document.write(`
+            <html>
+                <head><title>${filename}</title></head>
+                <body style="margin:0; padding:20px; display:flex; justify-content:center; align-items:center; min-height:100vh; background:#f3f4f6;">
+                    <img src="${dataUrl}" style="max-width:100%; max-height:90vh; border:1px solid #ddd; border-radius:8px;">
+                </body>
+            </html>
+        `);
+    } else if (filename.toLowerCase().endsWith('.html')) {
+        newWindow.document.write(atob(dataUrl.split(',')[1]));
+    } else {
+        newWindow.document.write(`
+            <html>
+                <head><title>${filename}</title></head>
+                <body style="margin:0; padding:20px; font-family:monospace; white-space:pre-wrap;">
+                    ${atob(dataUrl.split(',')[1])}
+                </body>
+            </html>
+        `);
+    }
+}
+
+// CV жасау және жүктеу
+async function downloadStudentCV(studentId) {
+    try {
+        const res = await fetch(`/api/employer/student/${studentId}`);
+        const data = await res.json();
+
+        const student = data.user;
+        const projects = data.projects;
+        const portfolio = data.portfolio;
+
+        // CV құрамын жасау
+        const cvContent = `
+            CV - ${student.firstname} ${student.lastname}
+            ======================================
+            
+            ЖЕКЕ АҚПАРАТ:
+            Аты-жөні: ${student.firstname} ${student.lastname}
+            Email: ${student.email}
+            Пайдаланушы аты: @${student.username}
+            
+            ${student.bio ? `Өзі туралы:\n${student.bio}\n` : ''}
+            
+            ЖОБАЛАР (${projects.length}):
+            ${projects.map(project => `
+            • ${project.title} - ${project.category}
+              Мәртебесі: ${getStatusLabel(project.status)}
+              Сипаттама: ${project.description}
+              ${project.skills ? `Технологиялар: ${project.skills}` : ''}
+              Күні: ${new Date(project.created_at).toLocaleDateString()}
+            `).join('\n')}
+            
+            ПОРТФОЛИО (${portfolio.length}):
+            ${portfolio.map(item => `
+            • ${item.title} - ${getTypeLabel(item.item_type)}
+              Күні: ${new Date(item.item_date).toLocaleDateString()}
+              ${item.description ? `Сипаттама: ${item.description}` : ''}
+            `).join('\n')}
+            
+            СТАТИСТИКА:
+            - Жобалар саны: ${projects.length}
+            - Портфолио элементтері: ${portfolio.length}
+            - Профиль көрулері: ${data.analytics.profileViews || 0}
+            
+            ======================================
+            Жасалған күні: ${new Date().toLocaleDateString()}
+            Student Portfolio Platform арқылы
+        `;
+
+        // Файлды жасау және жүктеу
+        const blob = new Blob([cvContent], { type: 'text/plain;charset=utf-8' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `CV_${student.firstname}_${student.lastname}.txt`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+
+        showToast('CV сәтті жүктелді!');
+    } catch (error) {
+        console.error('CV жасау қатесі:', error);
+        showToast('CV жасау қатесі', 'error');
+    }
+}
+
+// Жұмыс беруші шығу
+function employerLogout() {
+    fetch("/api/employers/logout", {
+        method: "POST"
+    }).then(() => {
+        currentEmployer = null;
+        allStudents = [];
+        showPage('home');
+        showToast('Сәтті шықтыңыз');
+    });
+}
+
+/*// Басты бетке жұмыс беруші кіру батырмасын қосу
+function addEmployerButtonToHome() {
+    const homeButtons = document.querySelector('#home-page .flex.flex-col.sm\\:flex-row.gap-4.justify-center');
+    
+    if (homeButtons && !document.getElementById('employer-entry-btn')) {
+        const employerBtn = document.createElement('button');
+        employerBtn.id = 'employer-entry-btn';
+        employerBtn.onclick = () => showPage('employer-login');
+        employerBtn.className = 'border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors';
+        employerBtn.innerHTML = '👔 Жұмыс беруші ретінде кіру';
+        homeButtons.appendChild(employerBtn);
+    }
+}*/
+
+// Басты бетте жұмыс беруші батырмасын қосу
+document.addEventListener('DOMContentLoaded', () => {
+    addEmployerButtonToHome();
+});
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cd7b77d59cbca3',t:'MTc2Mjg2MDg4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

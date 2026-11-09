@@ -1,0 +1,52 @@
+[
+  {
+    "id": "user_1763025393578",
+    "email": "nursultan@gmail.com",
+    "password": "nan1",
+    "firstname": "Нұрсұлтан",
+    "lastname": "Назарбаев",
+    "username": "Нұрсұлтан",
+    "bio": "",
+    "created_at": "2025-11-13T09:16:33.578Z"
+  },
+  {
+    "id": "user_1763042896206",
+    "email": "messi@gmail.com",
+    "password": "messi10",
+    "firstname": "Лео",
+    "lastname": "Месси",
+    "username": "Месси",
+    "bio": "",
+    "created_at": "2025-11-13T14:08:16.206Z"
+  },
+  {
+    "id": "user_1763025393578",
+    "email": "nursultan@gmail.com",
+    "password": "nursultanfirst1",
+    "firstname": "Нұрсұлтан",
+    "lastname": "Назарбаев",
+    "username": "Нұрсұлтан",
+    "bio": "",
+    "created_at": "2025-11-13T09:16:33.578Z"
+  },
+  {
+    "id": "user_1763203809165",
+    "email": "raiymbek@gmail.com",
+    "password": "Райымбек9",
+    "firstname": "Райымбек",
+    "lastname": "Есбосынов",
+    "username": "Райымбек",
+    "bio": "Студент",
+    "created_at": "2025-11-15T10:50:09.165Z"
+  },
+  {
+    "id": "user_1764657407950",
+    "email": "ab@gmail.com",
+    "password": "zzz",
+    "firstname": "abcd",
+    "lastname": "xyz",
+    "username": "abcd",
+    "bio": "",
+    "created_at": "2025-12-02T06:36:47.951Z"
+  }
+]
